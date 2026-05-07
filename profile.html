@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Profile</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body onload="loadProfile()">
+
+  <h2>Thông tin cá nhân</h2>
+
+  <!-- AVATAR -->
+  <img id="avatar" src="https://i.pravatar.cc/120" width="120" style="border-radius:50%">
+
+  <p><b>Username:</b> <span id="username"></span></p>
+  <p><b>Email:</b> <span id="email"></span></p>
+  <p><b>Weight (cân nặng):</b> <span id="weight"></span></p>
+
+  <button onclick="showEdit()">✏️ Edit</button>
+  <button onclick="goBack()">⬅ Quay lại</button>
+
+  <hr>
+
+  <h3>Đổi mật khẩu</h3>
+
+  <input id="oldPass" type="password" placeholder="Mật khẩu cũ"><br><br>
+  <input id="newPass" type="password" placeholder="Mật khẩu mới"><br><br>
+
+  <button onclick="changePassword()">🔒 Đổi mật khẩu</button>
+
+  <hr>
+
+  <!-- FORM EDIT -->
+  <div id="editForm" style="display:none;">
+    <h3>Chỉnh sửa</h3>
+
+    <input id="editName" placeholder="Username"><br><br>
+    <input id="editWeight" placeholder="Weight"><br><br>
+
+    <!-- nhập URL (giữ lại nếu muốn) -->
+    <input id="editImage" placeholder="Image URL"><br><br>
+
+    <!-- 👇 chọn file từ máy -->
+    <input type="file" id="avatarFile" accept="image/*"><br><br>
+
+    <!-- preview ảnh -->
+    <img id="preview" width="100" style="display:none; border-radius:50%"><br><br>
+
+    <button onclick="updateProfile()">💾 Lưu</button>
+  </div>
+
+  <script src="/js/app.js"></script>
+
+</body>
+
+</html>

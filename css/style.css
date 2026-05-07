@@ -1,0 +1,68 @@
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #f4f6f9;
+}
+
+/* AUTH */
+.auth-box {
+  width: 320px;
+  margin: 100px auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+input {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* DASHBOARD */
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  background: white;
+}
+
+.profile {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.actions {
+  text-align: center;
+  margin: 20px;
+}
+
+.actions button {
+  margin: 5px;
+}
+
+#history {
+  padding: 20px;
+}
+
+#map {
+  height: 400px;
+  margin-top: 20px;
+  border-radius: 15px;
+}

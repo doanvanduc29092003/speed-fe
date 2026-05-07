@@ -1,0 +1,226 @@
+/* ICON CHAT */
+#chat-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #0084ff, #00c6ff);
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+
+#chat-icon:hover {
+  transform: scale(1.1);
+}
+
+/* ẨN CHAT */
+.hidden {
+  display: none !important;
+}
+
+/* CHATBOX */
+#chatbox {
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 650px; /* tăng nhẹ cho đẹp */
+  height: 480px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: row; /* 🔥 FIX CHÍNH */
+  overflow: hidden;
+  animation: fadeIn 0.3s ease;
+}
+
+/* animation mở */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* HEADER */
+#chat-header {
+  background: linear-gradient(135deg, #0084ff, #00c6ff);
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+  font-size: 16px;
+}
+
+/* BODY */
+#chat-body {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: #f0f2f5;
+}
+
+/* MESSAGE */
+.msg-user {
+  background: #0084ff;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 18px;
+  margin: 5px 0;
+  max-width: 75%;
+  align-self: flex-end;
+  margin-left: auto;
+  font-size: 14px;
+}
+
+.msg-bot {
+  background: #e4e6eb;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 18px;
+  margin: 5px 0;
+  max-width: 75%;
+  align-self: flex-start;
+  margin-right: auto;
+  font-size: 14px;
+}
+
+/* QUICK BUTTON */
+#quick-questions {
+  padding: 8px;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+#quick-questions button {
+  flex: 1;
+  padding: 6px;
+  border: none;
+  border-radius: 15px;
+  background: #e4e6eb;
+  cursor: pointer;
+  font-size: 12px;
+  transition: 0.2s;
+}
+
+#quick-questions button:hover {
+  background: #d8dadf;
+}
+
+/* INPUT */
+#chat-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+#chat-input input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  outline: none;
+  font-size: 14px;
+}
+
+#chat-input button {
+  border: none;
+  background: #0084ff;
+  color: white;
+  padding: 0 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#chat-input button:hover {
+  background: #006fd6;
+}
+
+/* SIDEBAR */
+#chat-sidebar {
+  width: 200px;
+  background: #202123;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #333;
+}
+
+.sidebar-header {
+  padding: 10px;
+  border-bottom: 1px solid #444;
+}
+
+.sidebar-header button {
+  width: 100%;
+  padding: 8px;
+  background: #343541;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+#chat-sessions {
+  flex: 1;
+  overflow-y: auto;
+}
+
+#chat-sessions::-webkit-scrollbar {
+  width: 5px;
+}
+
+#chat-sessions::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 10px;
+}
+
+.session-item {
+  padding: 10px;
+  padding-right: 30px; /* 🔥 chừa chỗ cho nút X + 5px */
+  border-bottom: 1px solid #333;
+  cursor: pointer;
+  font-size: 13px;
+  position: relative;
+}
+
+/* text */
+.session-item-text {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  max-width: calc(100% - 25px); /* 🔥 trừ đúng khoảng X + 5px */
+}
+
+.session-item:hover {
+  background: #2a2b32;
+}
+
+/* nút X */
+.session-item span {
+  position: absolute;
+  right: 5px; /* 🔥 cách mép đúng 5px */
+  top: 8px;
+  color: #ff6b6b;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* MAIN */
+#chat-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/chat.css">
+</head>
+
+<body onload="loadDashboard()">
+
+  <div class="header">
+    <h2>Welcome, <span id="username">...</span></h2>
+
+    <div>
+      <button onclick="goProfile()">Profile</button>
+      <button onclick="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="profile">
+    <!-- <img id="avatar" src="https://i.pravatar.cc/120" class="avatar"> -->
+    <img id="avatar" src="https://i.pravatar.cc/120" width="120" style="border-radius:50%" class="avatar">
+    <p id="userEmail">...</p>
+  </div>
+
+  <div class="actions">
+    <button onclick="goRun()">🏃 Start Run</button>
+    <button onclick="exportExcel()">📊 Export Excel</button>
+    <button onclick="exportWord()">📄 Export Word</button>
+  </div>
+
+  <!-- ICON -->
+  <div id="chat-icon" onclick="toggleChat()">💬</div>
+
+  <!-- CHATBOX -->
+  <div id="chatbox" class="hidden">
+
+  <!-- 🔥 SIDEBAR -->
+  <div id="chat-sidebar">
+    <div class="sidebar-header">
+      <button onclick="newChat()">➕ Chat mới</button>
+    </div>
+    <div id="chat-sessions"></div>
+  </div>
+
+  <!-- 🔥 MAIN CHAT -->
+  <div id="chat-main">
+    <div id="chat-header">🤖 Trợ lý chạy bộ</div>
+
+    <div id="chat-body"></div>
+
+    <div id="quick-questions">
+      <button onclick="quickAsk('Tôi nên chạy bao nhiêu km?')">🏃 Nên chạy bao nhiêu km?</button>
+      <button onclick="quickAsk('Chạy 5km đốt bao nhiêu calo?')">🔥 5km bao nhiêu calo?</button>
+      <button onclick="quickAsk('Cách chạy không mệt?')">💡 Cách chạy không mệt?</button>
+    </div>
+
+    <div id="chat-input">
+      <button onclick="startVoice()">🎤</button>
+      <input id="msg" placeholder="Nhập tin nhắn...">
+      <button onclick="sendMessage()">Gửi</button>
+    </div>
+  </div>
+
+</div>
+  
+
+  <h3>Lịch sử chạy</h3>
+  <ul id="history"></ul>
+
+  <script src="/js/app.js"></script>
+  <script src="/js/chat.js"></script>
+
+  <script>
+    function loadDashboard() {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      fetch("http://localhost:8080/api/auth/me", {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
+        .then(res => res.json())
+        .then(user => {
+
+          document.getElementById("username").innerText = user.username;
+          document.getElementById("userEmail").innerText = user.email;
+
+          const avatar = document.getElementById("avatar");
+
+          // ✅ FIX QUAN TRỌNG
+          avatar.src = (user.image && user.image.trim() !== "")
+            ? "http://localhost:8080" + user.image
+            : "https://i.pravatar.cc/120";
+
+          avatar.onerror = () => {
+            avatar.src = "https://i.pravatar.cc/120";
+          };
+        })
+        .catch(() => {
+          localStorage.removeItem("token");
+          window.location.href = "login.html";
+        });
+
+      // ===== HISTORY =====
+      fetch("http://localhost:8080/api/runs", {
+        headers: {
+          "Authorization": "Bearer " + token
+        }
+      })
+        .then(res => res.json())
+        .then(data => {
+          const list = document.getElementById("history");
+          list.innerHTML = "";
+
+          data.forEach(run => {
+            const li = document.createElement("li");
+
+            li.innerText =
+              `${run.distance.toFixed(2)} km - ${run.calories.toFixed(1)} calo - ${run.time} giây`;
+
+            const btn = document.createElement("button");
+            btn.innerText = "Xóa";
+            btn.onclick = () => deleteRun(run.id);
+
+            li.appendChild(btn);
+            list.appendChild(li);
+          });
+        });
+    }
+  </script>
+</body>
+
+</html>

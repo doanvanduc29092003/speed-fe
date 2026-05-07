@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Run Map</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+  <!-- Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+</head>
+
+<!-- 🔥 check login + load map -->
+<body onload="initRunPage()">
+
+<div class="container">
+
+  <h2>🏃 Running...</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <h3>Distance</h3>
+      <p id="distance">0.00 km</p>
+    </div>
+
+    <div class="card">
+      <h3>Time</h3>
+      <p id="time">0 s</p>
+    </div>
+
+    <div class="card">
+      <h3>Calories</h3>
+      <p id="calories">0</p>
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="start" onclick="startRun()">Start</button>
+    <button class="pause" onclick="pauseRun()">Pause</button>
+    <button class="stop" onclick="stopRun()">Stop</button>
+    <button onclick="centerMap()">📍 My Location</button>
+    <button onclick="goBack()">⬅ Back</button>
+  </div>
+
+  <div id="map"></div>
+
+</div>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/runs.js"></script>
+
+<script>
+// 🔥 INIT PAGE
+function initRunPage() {
+  const token = localStorage.getItem("token");
+
+  // chưa login → về login
+  if (!token) {
+    window.location.href = "login.html";
+    return;
+  }
+
+  // lấy vị trí hiện tại để init map
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(pos => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+
+      initMap(lat, lng);
+    }, () => {
+      alert("Không lấy được vị trí");
+    });
+  } else {
+    alert("Trình duyệt không hỗ trợ GPS");
+  }
+}
+</script>
+
+</body>
+</html>
