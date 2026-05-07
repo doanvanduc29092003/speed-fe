@@ -55,7 +55,7 @@ function login() {
 
     console.log("SAVED:", localStorage.getItem("token"));
 
-    window.location.href = "dashboard.html";
+    window.location.href = "index.html";
   })
   .catch(err => {
     console.error(err);
@@ -114,7 +114,7 @@ function goRun() {
 }
 
 function goBack() {
-  window.location.href = "dashboard.html";
+  window.location.href = "index.html";
 }
 
 // ================= EXPORT =================

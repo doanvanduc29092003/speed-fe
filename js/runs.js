@@ -187,5 +187,5 @@ function getDistance(lat1, lon1, lat2, lon2) {
 
 // ===== BACK =====
 function goBack() {
-  window.location.href = "dashboard.html";
+  window.location.href = "index.html";
 }
