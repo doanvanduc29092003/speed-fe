@@ -1,4 +1,4 @@
-const API = "http://localhost:8080";
+const API = "speed-be-production.up.railway.app";
 
 // ================= CHECK AUTH =================
 function checkAuth() {
@@ -398,7 +398,7 @@ async function updateProfile() {
       const formData = new FormData();
       formData.append("file", file);
 
-      const res = await fetch("http://localhost:8080/api/auth/upload-avatar", {
+      const res = await fetch("speed-be-production.up.railway.app/api/auth/upload-avatar", {
         method: "POST",
         headers: {
           "Authorization": "Bearer " + token
@@ -422,11 +422,11 @@ async function updateProfile() {
       finalImage = data.image;
 
       document.getElementById("avatar").src =
-        "http://localhost:8080/uploads/" + data.image;
+        "speed-be-production.up.railway.app/uploads/" + data.image;
     }
 
     // ===== 2. UPDATE PROFILE =====
-    const res2 = await fetch("http://localhost:8080/api/auth/me", {
+    const res2 = await fetch("speed-be-production.up.railway.app/api/auth/me", {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -464,7 +464,7 @@ async function updateProfile() {
 function loadUserInfo() {
   const token = localStorage.getItem("token");
 
-  fetch("http://localhost:8080/api/auth/me", {
+  fetch("speed-be-production.up.railway.app/api/auth/me", {
     headers: {
       "Authorization": "Bearer " + token
     }
@@ -492,7 +492,7 @@ function changePassword() {
   const oldPassword = document.getElementById("oldPass").value;
   const newPassword = document.getElementById("newPass").value;
 
-  fetch("http://localhost:8080/api/auth/change-password", {
+  fetch("speed-be-production.up.railway.app/api/auth/change-password", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

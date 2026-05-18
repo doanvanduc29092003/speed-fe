@@ -17,7 +17,7 @@ function sendMessage() {
 
   const token = localStorage.getItem("token");
 
-  fetch("http://localhost:8080/api/auth/chat", {
+  fetch("speed-be-production.up.railway.app/api/auth/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -153,7 +153,7 @@ document.getElementById("msg").addEventListener("keypress", function (e) {
 function loadSessions() {
   const token = localStorage.getItem("token");
 
-  fetch("http://localhost:8080/api/auth/chat/sessions", {
+  fetch("speed-be-production.up.railway.app/api/auth/chat/sessions", {
     headers: {
       "Authorization": "Bearer " + token
     }
@@ -185,7 +185,7 @@ function loadHistory(sessionId) {
 
   const token = localStorage.getItem("token");
 
-  fetch(`http://localhost:8080/api/auth/chat/history/${sessionId}`, {
+  fetch(`speed-be-production.up.railway.app/api/auth/chat/history/${sessionId}`, {
     headers: {
       "Authorization": "Bearer " + token
     }
@@ -209,7 +209,7 @@ function newChat() {
 function deleteSession(id) {
   const token = localStorage.getItem("token");
 
-  fetch(`http://localhost:8080/api/auth/chat/${id}`, {
+  fetch(`speed-be-production.up.railway.app/api/auth/chat/${id}`, {
     method: "DELETE",
     headers: {
       "Authorization": "Bearer " + token
